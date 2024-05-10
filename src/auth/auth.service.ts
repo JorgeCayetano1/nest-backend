@@ -14,7 +14,6 @@ import { User } from './entities/user.entity';
 import { LoginDto } from './dto/login.dto';
 import { JwtPayload } from './interfaces/jwt-payload';
 import { JwtService } from '@nestjs/jwt';
-import { get } from 'http';
 import { LoginResponse } from './interfaces/login-response';
 
 @Injectable()
@@ -37,6 +36,7 @@ export class AuthService {
 
       return user;
     } catch (error) {
+      console.log(error);
       if (error.code === 11000) {
         throw new BadRequestException(`${createUserDto.email} already exists!`);
       }
